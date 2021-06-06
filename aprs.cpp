@@ -214,5 +214,10 @@ Locator decodeLocator(const QString & loc)
 
 }
 
+void registerMetaTypes()
+{
+	qRegisterMetaType<APRS::Frame>();
+}
+
 
 } //</namespace>

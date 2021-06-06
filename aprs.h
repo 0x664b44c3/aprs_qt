@@ -5,6 +5,7 @@
 #include <QStringList>
 #include <QDateTime>
 #include <QtGlobal>
+#include <QMetaType>
 namespace APRS {
 
 struct Frame {
@@ -14,6 +15,7 @@ struct Frame {
 	QStringList via;
 	QByteArray payload;
 };
+
 
 enum LocatorType
 {
@@ -48,10 +50,13 @@ ObjectReport decodeObjectReport(const Frame &);
 QDateTime decodeTime(QString time);
 QDebug operator<<(QDebug debug, const Frame &f);
 
-
+void registerMetaTypes();
 unsigned char getType(const Frame & f);
 Locator decodeLocator(const QString &);
 int calcPasscode(QString callsign);
 Frame decodeFrame(const QByteArray &);
-}
+} //end ns
+
+Q_DECLARE_METATYPE(APRS::Frame)
+
 #endif // APRS_H
